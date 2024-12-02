@@ -7,6 +7,7 @@ import {
   StyleSheet,
   SafeAreaView,
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native'; // Import the navigation hook
 
 // If using local images, use require to import the image
 const googleLogo =
@@ -15,6 +16,7 @@ const appleLogo =
   'https://upload.wikimedia.org/wikipedia/commons/7/75/Apple_logo_black.svg'; // Apple logo URL
 
 const SignInScreen = () => {
+  const navigation = useNavigation(); // Initialize navigation
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -29,20 +31,17 @@ const SignInScreen = () => {
       <View style={styles.contentContainer}>
         <View style={styles.buttonContainer}>
           {/* Google Button */}
-          <TouchableOpacity style={styles.googleButton}>
-            <Image
-              source={{uri: googleLogo}} // Correctly using the URL for remote images
-              style={styles.buttonIcon}
-            />
+          <TouchableOpacity
+            style={styles.googleButton}
+            onPress={() => navigation.navigate('Home')} // Navigate to Home Screen
+          >
+            <Image source={{uri: googleLogo}} style={styles.buttonIcon} />
             <Text style={styles.buttonTextBlack}>Sign up with Google</Text>
           </TouchableOpacity>
 
           {/* Apple Button */}
           <TouchableOpacity style={styles.appleButton}>
-            <Image
-              source={{uri: appleLogo}} // Correctly using the URL for remote images
-              style={styles.buttonIcon}
-            />
+            <Image source={{uri: appleLogo}} style={styles.buttonIcon} />
             <Text style={styles.buttonTextBlack}>Sign in with Apple</Text>
           </TouchableOpacity>
         </View>
